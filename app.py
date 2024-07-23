@@ -40,7 +40,7 @@ if 'pages' not in st.session_state:
     st.session_state['pages'] = {}
 
 def essay_writer(topic: str):
-    essay = GroqCalls(topic)
+    essay = GPTCalls(topic)
     return {'action': 'text', 'content': essay}
 
 def streamlit_coder(description: str):
@@ -56,7 +56,7 @@ def streamlit_coder(description: str):
     Also concatenate the prompt for the tool in prompt variable to customise responses.
     Ensure the code is complete and executable.
     """
-    code = GroqCalls(code_prompt)
+    code = GPTCalls(code_prompt)
     return {'action': 'code', 'content': code}
 
 def final_reviewer(code: str):
@@ -76,11 +76,11 @@ def final_reviewer(code: str):
 
     Please provide only the corrected, executable Streamlit code without any additional text or explanations.
     """
-    corrected_code = GroqCalls(review_prompt)
+    corrected_code = GPTCalls(review_prompt)
     return {'action': 'code', 'content': corrected_code}
 
 def llm_call(prompt: str):
-    response = GroqCalls(prompt)
+    response = GPTCalls(prompt)
     return {'action': 'llm_response', 'content': response}
 
 def manage_pages(query: str):
